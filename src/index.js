@@ -4,9 +4,7 @@ import './style.css';
 
 const display = document.getElementById('display');
 let currentInput = '0';
-
 let previousInput = null;
-
 let operator = null;
 
 /**
@@ -61,7 +59,18 @@ function appendDigit(value) {
  */
 function calculateClicked() {
   if (operator && previousInput !== null) {
-    currentInput = calculate(previousInput, currentInput, operator);
+    const result = calculate(
+      parseFloat(previousInput),
+      parseFloat(currentInput),
+      operator,
+    );
+
+    if (result === null) {
+      currentInput = '0';
+      alert('Did you seriously try to divide by 0? 🤦‍');
+    } else {
+      currentInput = result;
+    }
     previousInput = null;
     operator = null;
   }
@@ -72,7 +81,11 @@ function calculateClicked() {
  */
 function simpleOperatorClicked(value) {
   if (operator && previousInput !== null) {
-    currentInput = calculate(previousInput, currentInput, operator);
+    currentInput = calculate(
+      parseFloat(previousInput),
+      parseFloat(currentInput),
+      operator,
+    );
   }
 
   operator = value;

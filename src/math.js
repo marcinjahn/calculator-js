@@ -8,8 +8,8 @@
  *   - `"-"` for subtraction,
  *   - `"*"` for multiplication,
  *   - `"/"` for division.
- * @returns {number} The result of the operation as a number. If an unsupported operator is provided,
- * returns `number2`.
+ * @returns {number | null} The result of the operation as a number. If an unsupported operator is provided,
+ * returns `number2`. If dividing by 0, returns null.
  *
  * @example
  * calculate(5, 3, "+"); // Returns 8
