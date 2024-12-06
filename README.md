@@ -2,7 +2,12 @@
 
 ## What I did
 
-You don't have to do those things!
+You don't have to do those things! I show here the steps I made to create this repository.
+If you want to run the code, go to the [How to use it](#how-to-use-it) section.
+
+I hope you used node already. I think you did if I remember correctly from the past.
+You will notice a few `npm` commands down below, because there're quite a few dependencies I had to
+install.
 
 1. Initialized the app:
 
@@ -45,9 +50,19 @@ It allows you to continuously regenerate the output bundle as you write new code
 5. I installed ESLint and Prettier and git hook:
 
 ```sh
-npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier lint-staged husky
+npm install --save-dev eslint prettier  eslint-plugin-prettier lint-staged husky
 npx eslint --init # I selected all the default options here
+npx husky init # pre-commit hook setup
 ```
+
+Then, I manually edited `.husky/pre-commit` to invoke `lint-staged` staged command.
+`lint-staged` is a tool that takes only git staged files and pushes them through some
+defined commands. You defined the commands in `package.json`, in `lint-staged` section (which I
+did). In our case, on every commit the following will happen:
+
+1. Prettier will be executed on the staged files (to fix formatting)
+2. ESLint will be executed on staged files, potentially blocking us from creating a commit with some
+   "bad" code. You can successfully commit only when the code is valid for ESLint.
 
 While initializing ESLint, I selected the following options:
 
@@ -65,6 +80,9 @@ eslint, globals, @eslint/js
 ```
 
 I created `.prettierrc` file with some usual configuration.
+I also created `eslint.config.mjs` with a configuration that integrates prettier with ESLint. By
+default, some of prettier formatting might conflict with ESLint rules, so there's a special plugin
+which fixes that. I used that plugin in the configuration file.
 
 ESLint checks your code for various "smells" and rules that you can define.
 For example, it can error when you use `var` instead of `let` and `const`. There are lots of
@@ -101,6 +119,11 @@ While working on the app, you can continuously build it as you introduce changes
 Just run `npm run start` and a small web server will be started serving the files from `dist`.
 Webpack will regenerate `dist` anytime you modify your code in `src`.
 
+### Deployment
+
+I spent more than two hours on the things above, didn't have time to set up deployment :(
+Do let me know if you want me to work on that. Shouldn't take me more than 0.5h I guess.
+
 ### Code Modifications
 
 - I updated all your code documentation (descriptions of functions) to use the
@@ -123,3 +146,12 @@ Webpack will regenerate `dist` anytime you modify your code in `src`.
   function `setupThemeSwitcher` that configures the theme switching. The CSS relies on data
   attributes, and the JS just changes the value of the attribute to `light` or `dark`. You could
   add more themes if you wanted to do so.
+
+### Remarks
+
+You might notice that this repo does not contain the `dist` directory, where the webpack output is
+supposed to be. This is intentional. We do not publish build results in the code repository, similar
+to how we don't include `node_modules` there.
+You can create the `dist` directory by following the [How to use it](#how-to-use-it) section.
+
+If questions come up, you know where to find me.
