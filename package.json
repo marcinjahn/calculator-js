@@ -27,7 +27,8 @@
     "webpack-dev-server": "^5.1.0"
   },
   "lint-staged": {
-    "*.js": [
+    "src/*.js": [
+      "prettier --write",
       "npm run lint",
       "git add"
     ]
