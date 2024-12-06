@@ -55,10 +55,9 @@ npx eslint --init # I selected all the default options here
 npx husky init # pre-commit hook setup
 ```
 
-Then, I manually edited `.husky/pre-commit` to invoke `lint-staged` staged command.
+Then, I manually edited `.husky/pre-commit` to invoke `lint-staged` command.
 `lint-staged` is a tool that takes only git staged files and pushes them through some
-defined commands. You defined the commands in `package.json`, in `lint-staged` section (which I
-did). In our case, on every commit the following will happen:
+defined commands. It makes sense, because you might have hundreds of files in the repo, and it could be costly to run commands on all of them. You only want to run them on the files that were actually modified for a commit. I defined the commands in `package.json`, in `lint-staged` section. In our case, on every commit the following will happen:
 
 1. Prettier will be executed on the staged files (to fix formatting)
 2. ESLint will be executed on staged files, potentially blocking us from creating a commit with some
@@ -154,4 +153,11 @@ supposed to be. This is intentional. We do not publish build results in the code
 to how we don't include `node_modules` there.
 You can create the `dist` directory by following the [How to use it](#how-to-use-it) section.
 
+The steps I did in this repository are a rather standard set of steps for setting up a JS project
+without any framework. It's actually quite a bit of boilerplate work. Since we create new projects
+rather rarely and the tools (like prettier, eslint, husky, webpack) evolve, it usually takes
+more time than you'd like every time. Setting up this repo, even though it looks rather simple, took
+me more than 2 hours (I don't expect you to pay more than we agreed though, which is for 2 hours).
+
 If questions come up, you know where to find me.
+Happy to help for any other projects that might come up!
