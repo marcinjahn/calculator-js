@@ -3,7 +3,7 @@ import { setupThemeSwitcher } from './theme';
 import './style.css';
 
 const display = document.getElementById('display');
-let currentInput = "0";
+let currentInput = '0';
 
 let previousInput = null;
 
