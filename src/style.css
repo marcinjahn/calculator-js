@@ -1,0 +1,89 @@
+body[data-theme="light"] {
+  --background-color: #fff;
+  --display-background: #222;
+  --text-color: #fff;
+  --button-background: #f9f9f9;
+  --button-hover: #ddd;
+  --operator-background: #f0a500;
+  --calculate-background: #2ecc71;
+  --clear-background: #e74c3c;
+}
+
+body[data-theme="dark"] {
+  --background-color: #333;
+  --display-background: #111;
+  --text-color: #eee;
+  --button-background: #444;
+  --button-hover: #555;
+  --operator-background: #d35400;
+  --calculate-background: #27ae60;
+  --clear-background: #c0392b;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  height: 100vh;
+  background-color: var(--background-color);
+  margin: 0;
+}
+
+#theme-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+#calculator {
+  width: 300px;
+  background: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#display {
+  background: var(--display-background);
+  color: var(--text-color);
+  text-align: right;
+  padding: 20px;
+  font-size: 2em;
+  border-radius: 10px 10px 0 0;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+  padding: 20px;
+  font-size: 1.2em;
+  border: 1px solid #ddd;
+  background: var(--button-background);
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: var(--button-hover);
+}
+
+.btn[data-action="operator"] {
+  background: var(--operator-background);
+  color: var(--text-color);
+}
+
+.btn[data-action="calculate"] {
+  background: var(--calculate-background);
+  color: var(--text-color);
+}
+
+.btn[data-action="clear"] {
+  background: var(--clear-background);
+  color: var(--text-color);
+}
