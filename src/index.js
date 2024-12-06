@@ -7,6 +7,7 @@ let currentInput = "0";
 
 let previousInput = null;
 
+
 let operator = null;
 
 /**
