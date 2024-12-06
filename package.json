@@ -7,8 +7,7 @@
     "build": "webpack",
     "start": "webpack serve --open",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "prepare": "husky"
+    "lint:fix": "eslint ./src --fix"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +25,16 @@
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "lint-staged"
+    }
   }
 }
